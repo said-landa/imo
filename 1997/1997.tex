@@ -1,5 +1,6 @@
 \documentclass{article}
-\usepackage{graphicx, xskak} 
+
+\usepackage{tikz}
 \usepackage[margin=1cm]{geometry}
 
 \title{IMO 1997}
@@ -12,22 +13,55 @@
 
 \noindent{\Large \textbf{Problem 1}}
 
+\vspace{0.5cm}
 
-{\large\noindent 
+{\large
 In the plane there is an infinite chessboard.
 For any pair of positive integers $m$ and $n$,
-consider a right-angled triangle with vertices at lattice points and whose
-legs, of lengths $m$ and $n$, lie along edges of the squares. Let $S_1$ be the total area of the black part of the triangle and $S_2$  be the total area of the white part. Let $f(m,n) = |S_1 - S_2|$.
+consider a right-angled triangle with vertices at lattice points
+and whose legs, of lengths $m$ and $n$, lie along edges of the squares.
+
+Let $S_1$ be the total area of the black part of the triangle
+and $S_2$ be the total area of the white part.
+
+Let $f(m,n)=|S_1-S_2|$.
 
 \begin{enumerate}
-    \item[(a)] Calculate $f(m,n)$ for all positive integers $m$ and $n$ which are either both even or both odd.
-    
+    \item[(a)] Calculate $f(m,n)$ for all positive integers
+    $m$ and $n$ which are either both even or both odd.
 \end{enumerate}
 }
 
-\begin{flushleft}
-    \chessboard
-\end{flushleft}
+\vspace{1cm}
+
+\begin{tikzpicture}[scale=0.8]
+
+% Chessboard
+\foreach \x in {0,...,7} {
+    \foreach \y in {0,...,7} {
+        \pgfmathparse{mod(\x+\y,2)==0 ? 1 : 0}
+        \ifdim\pgfmathresult pt>0pt
+            \fill[black] (\x,\y) rectangle ++(1,1);
+        \fi
+    }
+}
+
+% Grid
+\draw[step=1,gray] (0,0) grid (8,8);
+
+% Triangle dimensions
+\def\m{4}
+\def\n{2}
+
+% Triangle
+\draw[red,ultra thick]
+    (0,0) -- (\m,0) -- (0,\n) -- cycle;
+
+% Labels
+\node[below] at ({\m/2},0) {$m$};
+\node[left] at (0,{\n/2}) {$n$};
+
+\end{tikzpicture}
+\end{center}
 
 \end{document}
-    

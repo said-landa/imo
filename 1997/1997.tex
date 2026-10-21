@@ -11,7 +11,7 @@
 
 \maketitle
 
-\noindent{\Large \textbf{Problem 1}}
+\noindent{\Large\textbf{Problem 1}}
 
 \vspace{0.5cm}
 
@@ -34,34 +34,69 @@ Let $f(m,n)=|S_1-S_2|$.
 
 \vspace{1cm}
 
+\noindent
+\begin{minipage}[t]{0.36\textwidth}
+\vspace{0pt}
+\centering
 \begin{tikzpicture}[scale=0.8]
-
-% Chessboard
-\foreach \x in {0,...,7} {
-    \foreach \y in {0,...,7} {
-        \pgfmathparse{mod(\x+\y,2)==0 ? 1 : 0}
-        \ifdim\pgfmathresult pt>0pt
-            \fill[black] (\x,\y) rectangle ++(1,1);
-        \fi
+    % Chessboard
+    \foreach \x in {0,...,7} {
+        \foreach \y in {0,...,7} {
+            \pgfmathtruncatemacro{\squareparity}{mod(\x+\y,2)}
+            \ifnum\squareparity=0\relax
+                \fill[black] (\x,\y) rectangle ++(1,1);
+            \fi
+        }
     }
-}
 
-% Grid
-\draw[step=1,gray] (0,0) grid (8,8);
+    % Grid
+    \draw[step=1,gray] (0,0) grid (8,8);
 
-% Triangle dimensions
-\def\m{4}
-\def\n{2}
+    % Triangle dimensions
+    \def\m{4}
+    \def\n{2}
 
-% Triangle
-\draw[red,ultra thick]
-    (0,0) -- (\m,0) -- (0,\n) -- cycle;
+    % Triangle
+    \draw[red,ultra thick]
+        (0,0) -- (\m,0) -- (0,\n) -- cycle;
 
-% Labels
-\node[below] at ({\m/2},0) {$m$};
-\node[left] at (0,{\n/2}) {$n$};
-
+    % Labels
+    \node[below] at ({\m/2},0) {$m$};
+    \node[left] at (0,{\n/2}) {$n$};
 \end{tikzpicture}
-\end{center}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.62\textwidth}
+\vspace{0pt}
+\large
+\textbf{If both $m$ and $n$ are even.}
+
+\medskip
+
+$m=4$ and $n=2$. The two color
+areas are
+\[
+    S_1=2,\qquad S_2=2.
+\]
+Therefore,
+\[
+    f(4,2)=|2-2|=0.
+\]
+
+\textbf{If both $m$ and $n$ are odd.}
+
+\medskip
+
+$m=4$ and $n=2$. The two color
+areas are
+\[
+    S_1=2,\qquad S_2=2.
+\]
+Therefore,
+\[
+    f(4,2)=|2-2|=0.
+\]
+
+\end{minipage}
 
 \end{document}

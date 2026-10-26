@@ -38,7 +38,7 @@ Let $f(m,n)=|S_1-S_2|$.
 \begin{minipage}[t]{0.36\textwidth}
 \vspace{0pt}
 \centering
-\begin{tikzpicture}[scale=0.8]
+\begin{tikzpicture}[scale=1]
     % Chessboard
     \foreach \x in {0,...,7} {
         \foreach \y in {0,...,7} {
@@ -48,43 +48,54 @@ Let $f(m,n)=|S_1-S_2|$.
             \fi
         }
     }
-
-    % Grid
-    \draw[step=1,gray] (0,0) grid (8,8);
-
-    % Triangle dimensions
+\draw[gray,thick] (0,0) rectangle (8,8);
+    % Red triangle
+\begin{scope}[shift={(0,0)}]
     \def\m{4}
     \def\n{2}
 
-    % Triangle
     \draw[red,ultra thick]
         (0,0) -- (\m,0) -- (0,\n) -- cycle;
 
-    % Labels
-    \node[below] at ({\m/2},0) {$m$};
-    \node[left] at (0,{\n/2}) {$n$};
+    \node[below,fill=white,inner sep=1pt,text=red]
+        at ({\m/2},0) {$m=\m$};
+    \node[left,fill=white,inner sep=1pt,text=red]
+        at (0,{\n/2}) {$n=\n$};
+\end{scope}
 
-     \begin{scope}[shift={(2,4)}]
-        \draw[blue!70!cyan,ultra thick]
-            (0,0) -- (5,0) -- (0,3) -- cycle;
-        \node[below,fill=white,inner sep=1pt,text=blue!70!cyan]
-            at (2.5,0) {$m=5$};
-        \node[left,fill=white,inner sep=1pt,text=blue!70!cyan]
-            at (0,1.5) {$n=3$};
-    \end{scope}
+% Blue triangle
+\begin{scope}[shift={(2,4)}]
+    \def\m{5}
+    \def\n{3}
+
+    \draw[blue!70!cyan,ultra thick]
+        (0,0) -- (\m,0) -- (0,\n) -- cycle;
+
+    \node[below,fill=white,inner sep=1pt,text=blue!70!cyan]
+        at ({\m/2},0) {$m=\m$};
+    \node[left,fill=white,inner sep=1pt,text=blue!70!cyan]
+        at (0,{\n/2}) {$n=\n$};
+\end{scope}
+    
     
 \end{tikzpicture}
 \end{minipage}
 \hfill
-\begin{minipage}[t]{0.62\textwidth}
+\begin{minipage}[t]{\dimexpr\textwidth-10.3cm\relax}
 \vspace{0pt}
 \large
+
+% Compact equation spacing
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\setlength{\abovedisplayshortskip}{5pt}
+\setlength{\belowdisplayshortskip}{5pt}
+
 \textbf{If both $m$ and $n$ are even.}
 
 \medskip
 
-$m=4$ and $n=2$. The two color
-areas are
+For $m=4$ and $n=2$, the two color areas are
 \[
     S_1=2,\qquad S_2=2.
 \]
@@ -92,26 +103,26 @@ Therefore,
 \[
     f(4,2)=|2-2|=0.
 \]
+
+\bigskip
 
 \textbf{If both $m$ and $n$ are odd.}
 
 \medskip
 
-$m=5$ and $n=3$. 
-\vspace{0.5cm}
-We can construct a rectangle of sides $m=5$ and $n=3$
-The two color
-areas are
-
+For $m=5$ and $n=3$, the two color areas are
 \[
-    S_1=2,\qquad S_2=2.
+    S_1=4,\qquad S_2=\frac{7}{2}.
 \]
 Therefore,
 \[
-    f(4,2)=|2-2|=0.
+    f(5,3)=\left|4-\frac{7}{2}\right|=\frac{1}{2}.
 \]
 
 \end{minipage}
+\vspace{1cm}
+
+{\large Complete }
 
 \end{document}
 
